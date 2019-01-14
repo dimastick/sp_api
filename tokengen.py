@@ -3,13 +3,29 @@
 import requests
 import memcache
 from hashlib import md5
+import configparser
 
-# USER_ID = '4b2ea5dd72ed1cad7a82b739c48ce98c'
-# USER_SECRET = '2d3e2a2b857ebc72219047dc4f4aa35c'
+TEST_SYSTEMS = ['prod', 'pre_prod', 'stage']
+test_system = TEST_SYSTEMS[2]
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+if test_system == 'stage':
+    url_api = config['STAGE']['url_api']
+    user_id = config['STAGE']['user_id']
+    user_secret = config['STAGE']['user_secret']
+elif test_system == 'pre_prod':
+    url_api = config['PRE_PROD']['url_api']
+    user_id = config['PRE_PROD']['user_id']
+    user_secret = config['PRE_PROD']['user_secret']
+else:
+    url_api = config['PROD']['url_api']
+    user_id = config['PROD']['user_id']
+    user_secret = config['PROD']['user_secret']
 
 
 class Token:
-    auth_url = 'https://api.sendpulse.com/oauth/access_token'
     mc = memcache.Client(['127.0.0.1:11211'], debug=0)
 
     def __init__(self, user_id, secret, url):
@@ -50,7 +66,7 @@ class Token:
         return self.token_name
 
 
-# if __name__ == '__main__':
-#     t = Token(USER_ID, USER_SECRET, 'https://api.sendpulse.com/oauth/access_token').get_token()
-#     t_name = Token(USER_ID, USER_SECRET, 'https://api.sendpulse.com/oauth/access_token').get_token_name()
-#     print('{} ==> "{}"'.format(t_name, t))
+if __name__ == '__main__':
+    t = Token(user_id, user_secret, '{}/{}'.format(url_api, 'oauth/access_token')).get_token()
+    t_name = Token(user_id, user_secret, '{}/{}'.format(url_api, 'oauth/access_token')).get_token_name()
+    print('{} ==> "{}"'.format(t_name, t))

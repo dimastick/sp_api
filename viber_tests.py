@@ -3,26 +3,26 @@
 import requests
 from tokengen import Token
 from yaml import load_all
+import configparser
 
 TEST_SYSTEMS = ['prod', 'pre_prod', 'stage']
-url_api = ''
-user_id = ''
-user_secret = ''
-
 test_system = TEST_SYSTEMS[2]
 
+config = configparser.ConfigParser()
+config.read('config.ini')
+
 if test_system == 'stage':
-    url_api = 'http://restapi.sendpulse.test'
-    user_id = '3d3bd92a7c33739eed08fa19327d8540'
-    user_secret = '13cc0e430e6ee4920b6c6571fa8133a6'
+    url_api = config['STAGE']['url_api']
+    user_id = config['STAGE']['user_id']
+    user_secret = config['STAGE']['user_secret']
 elif test_system == 'pre_prod':
-    url_api = 'https://preapi.sendpulse.com'
-    user_id = '4b2ea5dd72ed1cad7a82b739c48ce98c'
-    user_secret = '2d3e2a2b857ebc72219047dc4f4aa35c'
+    url_api = config['PRE_PROD']['url_api']
+    user_id = config['PRE_PROD']['user_id']
+    user_secret = config['PRE_PROD']['user_secret']
 else:
-    url_api = 'https://api.sendpulse.com'
-    user_id = '4b2ea5dd72ed1cad7a82b739c48ce98c'
-    user_secret = '2d3e2a2b857ebc72219047dc4f4aa35c'
+    url_api = config['PROD']['url_api']
+    user_id = config['PROD']['user_id']
+    user_secret = config['PROD']['user_secret']
 
 
 headers = dict()
