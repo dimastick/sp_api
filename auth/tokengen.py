@@ -3,35 +3,27 @@
 import requests
 import memcache
 from hashlib import md5
-import configparser
-
-TEST_SYSTEMS = ['prod', 'pre_prod', 'stage']
-test_system = TEST_SYSTEMS[2]
-
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-if test_system == 'stage':
-    url_api = config['STAGE']['url_api']
-    user_id = config['STAGE']['user_id']
-    user_secret = config['STAGE']['user_secret']
-elif test_system == 'pre_prod':
-    url_api = config['PRE_PROD']['url_api']
-    user_id = config['PRE_PROD']['user_id']
-    user_secret = config['PRE_PROD']['user_secret']
-else:
-    url_api = config['PROD']['url_api']
-    user_id = config['PROD']['user_id']
-    user_secret = config['PROD']['user_secret']
+import yaml
 
 
-class Token:
+class BaseApi:
+    def __init__(self):
+        with open('/home/dimasty/py_scripts/config.yaml') as fh:
+            dict_conf = yaml.load(fh)
+
+        for k in dict_conf.keys():
+            if k in ['stage', 'pre_prod', 'prod'] and dict_conf[k]['usage']:
+                self.url_api = dict_conf[k]['url_api']
+                self.user_id = dict_conf[k]['user_id']
+                self.user_secret = dict_conf[k]['user_secret']
+
+
+class Token(BaseApi):
     mc = memcache.Client(['127.0.0.1:11211'], debug=0)
 
-    def __init__(self, user_id, secret, url):
-        self.user_id = user_id
-        self.user_secret = secret
-        self.auth_url = url
+    def __init__(self):
+        super().__init__()
+        self.auth_url = '{}/{}'.format(self.url_api, 'oauth/access_token')
         self.token_name = self.create_token_name()
         self.token = self.set_token()
 
@@ -50,8 +42,6 @@ class Token:
                 client_id=self.user_id,
                 client_secret=self.user_secret
             )
-            # print(self.auth_url)
-            # print(json.dumps(self.auth_url))
             headers = {'Content-Type': 'application/json'}
             r = requests.post(self.auth_url, headers=headers, json=auth_data)
             token = '{} {}'.format(r.json()['token_type'], r.json()['access_token'])
@@ -67,6 +57,6 @@ class Token:
 
 
 if __name__ == '__main__':
-    t = Token(user_id, user_secret, '{}/{}'.format(url_api, 'oauth/access_token')).get_token()
-    t_name = Token(user_id, user_secret, '{}/{}'.format(url_api, 'oauth/access_token')).get_token_name()
+    t = Token().get_token()
+    t_name = Token().get_token_name()
     print('{} ==> "{}"'.format(t_name, t))
