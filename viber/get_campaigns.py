@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import requests
-from sp_api.auth.tokengen import Token, BaseApi
-
+from base_api import BaseApi
+import json
 
 class GetViberCampaigns(BaseApi):
     def __init__(self):
@@ -10,16 +10,17 @@ class GetViberCampaigns(BaseApi):
         self.url = '{}/{}'.format(self.url_api, 'viber/task')
         self.headers = dict([
             ('Content-Type', 'application/json'),
-            ('Authorization', Token().get_token())
+            ('Authorization', self.token)
         ])
 
     def get_campaigns(self):
         response = requests.get(self.url, headers=self.headers, params={})
         camp_list = response.json()
-        camp_list.sort(key=lambda resp_dict: resp_dict['id'], reverse=True)
-        if response.status_code == 200:
-            [print(camp['status']) for camp in camp_list]
+        return camp_list
 
 
 if __name__ == '__main__':
-    GetViberCampaigns().get_campaigns()
+    campaigns = GetViberCampaigns().get_campaigns()
+    for camp in campaigns:
+        print(json.dumps(camp, indent=4, ensure_ascii=False))
+

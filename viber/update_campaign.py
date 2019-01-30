@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import requests
-from sp_api.auth.tokengen import Token, BaseApi
+from base_api import BaseApi
 from yaml import load_all
 import json
+from viber.get_campaign import GetViberCampaign
 
 
 class UpdateViberCampaign(BaseApi):
@@ -12,22 +13,29 @@ class UpdateViberCampaign(BaseApi):
         self.url = '{}/{}'.format(self.url_api, 'viber/update')
         self.headers = dict([
             ('Content-Type', 'application/json'),
-            ('Authorization', Token().get_token())
+            ('Authorization', self.token)
         ])
 
     def update_campaign(self, task_id):
         with open("/home/dimasty/py_scripts/requests/viber/update_campaigns.yaml") as f:
             for data in load_all(f):
-                # data['main_task_id'] = task_id
-                # data['task_id'] = task_id
-                print(json.dumps(data, indent=4, ensure_ascii=False))
-                # exit()
+                data['main_task_id'] = task_id
                 response = requests.post(self.url, headers=self.headers, json=data)
-                print(response.json())
-                if response.status_code == 200:
-                    print(response.json())
+                return response.json()
 
 
 if __name__ == '__main__':
-    UpdateViberCampaign().update_campaign(8799334)
+    camp_id_to_update = 8799334
+
+    print("Initial campaign")
+    # get
+    campaign = GetViberCampaign().get_campaign(camp_id_to_update)
+    print(json.dumps(campaign, indent=4, ensure_ascii=False))
+
+    print("Updated campaign")
+    #update
+    UpdateViberCampaign().update_campaign(camp_id_to_update)
+    # get again
+    updated_campaign = GetViberCampaign().get_campaign(camp_id_to_update)
+    print(json.dumps(updated_campaign, indent=4, ensure_ascii=False))
 

@@ -3,27 +3,16 @@
 import requests
 import memcache
 from hashlib import md5
-import yaml
 
 
-class BaseApi:
-    def __init__(self):
-        with open('/home/dimasty/py_scripts/config.yaml') as fh:
-            dict_conf = yaml.load(fh)
-
-        for k in dict_conf.keys():
-            if k in ['stage', 'pre_prod', 'prod'] and dict_conf[k]['usage']:
-                self.url_api = dict_conf[k]['url_api']
-                self.user_id = dict_conf[k]['user_id']
-                self.user_secret = dict_conf[k]['user_secret']
-
-
-class Token(BaseApi):
+class Token:
     mc = memcache.Client(['127.0.0.1:11211'], debug=0)
 
-    def __init__(self):
+    def __init__(self, url_api, user_id, user_secret):
         super().__init__()
-        self.auth_url = '{}/{}'.format(self.url_api, 'oauth/access_token')
+        self.auth_url = '{}/{}'.format(url_api, 'oauth/access_token')
+        self.user_id = user_id
+        self.user_secret = user_secret
         self.token_name = self.create_token_name()
         self.token = self.set_token()
 
@@ -56,7 +45,3 @@ class Token(BaseApi):
         return self.token_name
 
 
-if __name__ == '__main__':
-    t = Token().get_token()
-    t_name = Token().get_token_name()
-    print('{} ==> "{}"'.format(t_name, t))

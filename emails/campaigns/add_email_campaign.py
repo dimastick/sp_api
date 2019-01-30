@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
-from sp_api.auth.tokengen import Token, BaseApi
+from sp_api.base_api import Token, BaseApi
 from yaml import load_all
 
 
