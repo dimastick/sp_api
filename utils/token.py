@@ -8,11 +8,12 @@ from hashlib import md5
 class Token:
     mc = memcache.Client(['127.0.0.1:11211'], debug=0)
 
-    def __init__(self, url_api, user_id, user_secret):
+    def __init__(self, **kwargs):
+        """kwargs dict should contain url_api, user_id, user_secret keys"""
         super().__init__()
-        self.auth_url = '{}/{}'.format(url_api, 'oauth/access_token')
-        self.user_id = user_id
-        self.user_secret = user_secret
+        self.auth_url = '{}/{}'.format(kwargs['url_api'], 'oauth/access_token')
+        self.user_id = kwargs['user_id']
+        self.user_secret = kwargs['user_secret']
         self.token_name = self.create_token_name()
         self.token = self.set_token()
 
