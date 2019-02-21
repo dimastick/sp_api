@@ -28,19 +28,33 @@ class ViberCampaign(BaseApi):
         response = requests.get(self.url + '/task/{}/recipients'.format(task_id), headers=self.headers, params={})
         return response.json()
 
+    def update_campaign(self, update_info):
+        self.headers.update({'Content-Type': 'application/json'})
+        response = requests.post(self.url + '/update', headers=self.headers, json=update_info)
+        return response.json()
+
 
 if __name__ == '__main__':
     # # get campaign
-    # campaign = ViberCampaign().get_campaign_info(8909161)
+    # campaign = ViberCampaign().get_campaign_info(9066468)
     # print(json.dumps(campaign, indent=4, ensure_ascii=False))
 
-    # add_campaign
-    resource_dir = BaseTest().conf['viber_service_api']['resourses']
+    # # add_campaign
+    # resource_dir = BaseTest().conf['resourses']
+    # YamlIncludeConstructor.add_to_loader_class(base_dir=resource_dir + '/requests/viber/campaign')
+    # with open('{}/{}'.format(resource_dir, "requests/viber/campaign/add_campaigns.yaml")) as f:
+    #     for request_data in load_all(f):
+    #         added_campaign = ViberCampaign().add_campaign(request_data)
+    #         print(json.dumps(added_campaign, indent=4, ensure_ascii=False))
+
+    # update_campaign
+    resource_dir = BaseTest().conf['resourses']
     YamlIncludeConstructor.add_to_loader_class(base_dir=resource_dir + '/requests/viber/campaign')
-    with open('{}/{}'.format(resource_dir, "requests/viber/campaign/add_campaigns.yaml")) as f:
+    with open('{}/{}'.format(resource_dir, "requests/viber/campaign/update_campaigns.yaml")) as f:
         for request_data in load_all(f):
-            added_campaign = ViberCampaign().add_campaign(request_data)
-            print(json.dumps(added_campaign, indent=4, ensure_ascii=False))
+            updated_campaign = ViberCampaign().update_campaign(request_data)
+            print(json.dumps(updated_campaign, indent=4, ensure_ascii=False))
+
 
     # get recipients
     # recipients = ViberCampaign().get_recipient_list(8901476)

@@ -10,7 +10,7 @@ from yamlinclude import YamlIncludeConstructor
 
 
 class TestViberService(TestCase):
-    resources_path = BaseTest().conf['viber_service_api']['resourses']
+    resources_path = BaseTest().conf['resourses']
 
     def setUp(self):
         self.campaign = ViberCampaign()
