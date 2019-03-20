@@ -1,0 +1,181 @@
+<order>
+  <id type="integer">19328833</id>
+  <account-id type="integer">655940</account-id>
+  <fulfillment-status>new</fulfillment-status>
+  <comment />
+  <delivery-variant-id type="integer">1785192</delivery-variant-id>
+  <payment-gateway-id type="integer">755295</payment-gateway-id>
+  <created-at type="timestamp">2019-02-20 20:13:31 +0300</created-at>
+  <updated-at type="timestamp">2019-02-20 20:13:31 +0300</updated-at>
+  <payment-title>&#1053;&#1072;&#1083;&#1080;&#1095;&#1085;&#1099;&#1084; &#1082;&#1091;&#1088;&#1100;&#1077;&#1088;&#1091;</payment-title>
+  <payment-description>&#1053;&#1072;&#1083;&#1080;&#1095;&#1085;&#1099;&#1084;&#1080; &#1082;&#1091;&#1088;&#1100;&#1077;&#1088;&#1091;</payment-description>
+  <delivery-description>&#1057;&#1072;&#1084;&#1086;&#1074;&#1099;&#1074;&#1086;&#1079; (&#1053;&#1072; &#1087;&#1091;&#1085;&#1082;&#1090;&#1077; &#1074;&#1099;&#1076;&#1072;&#1095;&#1080;)</delivery-description>
+  <delivery-price type="decimal">0.0</delivery-price>
+  <number type="integer">1025</number>
+  <key>3640b61f1e982a5cd2af12271c8e466a</key>
+  <accepted-at nil="true" type="timestamp" />
+  <delivered-at nil="true" type="timestamp" />
+  <referer nil="true" />
+  <current-location nil="true" />
+  <query nil="true" />
+  <source-domain nil="true" />
+  <delivery-date nil="true" type="date" />
+  <delivery-from-hour nil="true" type="integer" />
+  <delivery-to-hour nil="true" type="integer" />
+  <financial-status>pending</financial-status>
+  <paid-at nil="true" type="timestamp" />
+  <first-referer nil="true" />
+  <first-current-location nil="true" />
+  <first-query nil="true" />
+  <first-source-domain nil="true" />
+  <delivery-title>&#1057;&#1072;&#1084;&#1086;&#1074;&#1099;&#1074;&#1086;&#1079;</delivery-title>
+  <margin type="decimal">0.0</margin>
+  <archived type="boolean">false</archived>
+  <manager-comment />
+  <currency-code>RUR</currency-code>
+  <client-transaction-id nil="true" />
+  <first-source>&#1055;&#1088;&#1103;&#1084;&#1086;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;</first-source>
+  <source>&#1055;&#1088;&#1103;&#1084;&#1086;&#1081; &#1090;&#1088;&#1072;&#1092;&#1080;&#1082;</source>
+  <locale>ru</locale>
+  <fields-values type="array" />
+  <shipping-address>
+    <id type="integer">22283551</id>
+    <name>&#1043;&#1086;&#1096;&#1072; &#1052;&#1072;&#1097;&#1077;&#1085;&#1082;&#1086;</name>
+    <phone />
+    <country nil="true" />
+    <state />
+    <city nil="true" />
+    <address>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072; 12</address>
+    <zip nil="true" />
+    <surname nil="true" />
+    <middlename nil="true" />
+    <street nil="true" />
+    <house nil="true" />
+    <flat nil="true" />
+    <full-locality-name>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072;</full-locality-name>
+    <full-delivery-address>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072;, &#1052;&#1086;&#1089;&#1082;&#1074;&#1072; 12</full-delivery-address>
+    <full-name>&#1043;&#1086;&#1096;&#1072; &#1052;&#1072;&#1097;&#1077;&#1085;&#1082;&#1086;</full-name>
+    <address-for-gis>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072;, &#1052;&#1086;&#1089;&#1082;&#1074;&#1072; 12</address-for-gis>
+    <location-valid type="boolean">false</location-valid>
+    <fields-values type="array" />
+<location>
+  <kladr-code nil="true" />
+  <zip nil="true" />
+  <region-zip nil="true" />
+  <country>RU</country>
+  <state />
+  <state-type nil="true" />
+  <area nil="true" />
+  <area-type nil="true" />
+  <city nil="true" />
+  <city-type nil="true" />
+  <settlement nil="true" />
+  <settlement-type nil="true" />
+  <address>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072; 12</address>
+  <street>&#1052;&#1086;&#1089;&#1082;&#1074;&#1072;</street>
+  <street-type nil="true" />
+  <house>12</house>
+  <flat nil="true" />
+  <is-kladr type="boolean">false</is-kladr>
+  <latitude nil="true" />
+  <longitude nil="true" />
+  <autodetected nil="true" />
+</location>
+  </shipping-address>
+  <discounts type="array" />
+  <client>
+    <id type="integer">21005991</id>
+    <email>dimas.post@outlook.com</email>
+    <name>outlook</name>
+    <phone>+380673333320</phone>
+    <created-at type="timestamp">2019-02-20 20:13:31 +0300</created-at>
+    <updated-at type="timestamp">2019-02-20 20:13:31 +0300</updated-at>
+    <registered type="boolean">false</registered>
+    <subscribe type="boolean">true</subscribe>
+    <client-group-id nil="true" type="integer" />
+    <surname nil="true" />
+    <middlename nil="true" />
+    <bonus-points type="integer">0</bonus-points>
+    <ip-addr nil="true" type="inet" />
+    <type>Client::Individual</type>
+    <correspondent-account nil="true" />
+    <settlement-account nil="true" />
+    <consent-to-personal-data nil="true" type="boolean" />
+    <progressive-discount nil="true" />
+    <group-discount nil="true" />
+    <fields-values type="array" />
+  </client>
+  <order-lines type="array">
+    <order-line>
+      <id type="integer">67705617</id>
+      <order-id type="integer">19328833</order-id>
+      <variant-id type="integer">201455717</variant-id>
+      <sale-price type="decimal">1490.0</sale-price>
+      <title>&#1044;&#1077;&#1084;&#1086;-&#1090;&#1086;&#1074;&#1072;&#1088; 3 (&#1095;&#1077;&#1088;&#1085;&#1099;&#1081;)</title>
+      <sku>3001</sku>
+      <created-at type="timestamp">2019-02-20 20:13:31 +0300</created-at>
+      <updated-at type="timestamp">2019-02-20 20:13:31 +0300</updated-at>
+      <weight nil="true" type="decimal" />
+      <product-id type="integer">118096418</product-id>
+      <discounts-amount type="decimal">0.0</discounts-amount>
+      <unit>pce</unit>
+      <barcode nil="true" />
+      <comment nil="true" />
+      <bundle-id nil="true" type="integer" />
+      <vat type="integer">-1</vat>
+      <dimensions nil="true" />
+      <fiscal-product-type type="integer">1</fiscal-product-type>
+      <quantity type="integer">1</quantity>
+      <reserved-quantity type="integer">0</reserved-quantity>
+      <full-sale-price type="decimal">1490.0</full-sale-price>
+      <total-price type="decimal">1490.0</total-price>
+      <full-total-price type="decimal">1490.0</full-total-price>
+    </order-line>
+  </order-lines>
+  <cookies>
+  </cookies>
+  <items-price type="decimal">1490.0</items-price>
+  <total-price type="decimal">1490.0</total-price>
+  <full-delivery-price type="decimal">0.0</full-delivery-price>
+<order-changes type="array">
+  <order-change>
+    <id type="integer">114990168</id>
+    <action>order_created</action>
+    <value-was nil="true" />
+    <value-is nil="true" />
+    <created-at type="dateTime">2019-02-20T20:13:31+03:00</created-at>
+    <user-name>Victor</user-name>
+  </order-change>
+</order-changes>
+<delivery-info>
+  <delivery-variant-id type="integer">1785192</delivery-variant-id>
+  <tariff-id nil="true" />
+  <title nil="true" />
+  <description nil="true" />
+  <price type="float">0.0</price>
+  <shipping-company nil="true" />
+  <shipping-company-handle nil="true" />
+  <delivery-interval>
+    <min-days nil="true" />
+    <max-days nil="true" />
+    <description />
+  </delivery-interval>
+  <errors type="array" />
+  <warnings type="array" />
+  <outlet>
+    <id nil="true" />
+    <external-id />
+    <latitude nil="true" />
+    <longitude nil="true" />
+    <title nil="true" />
+    <description nil="true" />
+    <address nil="true" />
+    <payment-method type="array" />
+    <source-id nil="true" />
+  </outlet>
+</delivery-info>
+<custom-status>
+  <permalink>new</permalink>
+  <title>&#1053;&#1086;&#1074;&#1099;&#1081;</title>
+</custom-status>
+</order>

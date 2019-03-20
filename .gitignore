@@ -2,3 +2,7 @@ __pycache__
 *.py[cod]
 
 *.ini
+
+allure-report/
+allure_gen/
+report/

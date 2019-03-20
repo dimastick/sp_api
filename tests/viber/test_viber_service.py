@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from sp_api.viber.sender import ViberSender
-from sp_api.viber.campaign import ViberCampaign
+from sp_api.src.viber.sender import ViberSender
+from sp_api.src.viber import ViberCampaign
 from sp_api.tests.base_test import BaseTest
 from yaml import load_all
 import unittest
-from unittest import TestCase, skip
+from unittest import TestCase
 from yamlinclude import YamlIncludeConstructor
 
 
@@ -64,14 +64,21 @@ class TestViberService(TestCase):
     def test_add_viber_campaign(self):
         YamlIncludeConstructor.add_to_loader_class(base_dir=self.resources_path + '/requests/viber/campaign')
         with open('{}/{}'.format(self.resources_path, "requests/viber/campaign/add_campaigns.yaml")) as rec_fh,\
-            open('{}/{}'.format(self.resources_path, "responses/viber/campaign/add_campaigns.yaml")) as resp_fh:
+                open('{}/{}'.format(self.resources_path, "responses/viber/campaign/add_campaigns.yaml")) as resp_fh:
 
             requests_gen = [request_info for request_info in load_all(rec_fh)]
             expected_results = [request_info for request_info in load_all(resp_fh)]
 
         actual_results = [self.campaign.add_campaign(requests_info=r) for r in requests_gen]
+        actual_results = [r.json() if r.status_code == 400 else self.campaign.get_campaign_info(r.json()['data']['task_id'])
+                          for r in actual_results]
+
         assert len(actual_results) == len(expected_results), 'Not all expected results are added to yaml file'
         for actual, expected in zip(actual_results, expected_results):
+            if 'id' in actual: del actual['id']
+            if 'created' in actual: del actual['created']
+            if 'send_date' in actual: del actual['send_date']
+            if 'status' in actual: del actual['status']
             with self.subTest():
                 self.assertDictEqual(actual, expected)
 

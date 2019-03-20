@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
-from sp_api.base_api import BaseApi
+from sp_api.tests.base_api import BaseApi
 import json
 
 

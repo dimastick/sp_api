@@ -3,12 +3,18 @@
 import yaml
 from sp_api.utils.token import Token
 from collections import Counter
+import os
 
 
 class BaseApi:
 
     def __init__(self):
-        with open('/home/dimasty/py_scripts/config.yaml') as fh:
+        if 'MY_CONF' in os.environ and os.environ['MY_CONF']:
+            conf_file_path = os.environ['MY_CONF']
+        else:
+            conf_file_path = '/home/dimasty/py_scripts'
+
+        with open(os.path.join(conf_file_path, 'config.yaml')) as fh:
             self.conf = yaml.load(fh)
         self.api_settings = self.get_api_settings()
         self.token = Token(**self.api_settings).get_token()

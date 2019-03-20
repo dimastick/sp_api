@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
-from sp_api.base_api import BaseApi
+from sp_api.tests.base_api import BaseApi
 import json
 from yamlinclude import YamlIncludeConstructor
 from sp_api.tests.base_test import BaseTest
@@ -11,8 +11,8 @@ class SmsCampaign(BaseApi):
 
     def __init__(self):
         super().__init__()
-        # self.url = '{}/{}'.format(self.api_settings['url_api'], 'sms/send')
-        self.url = '{}/{}'.format(self.api_settings['url_api'], 'sms/campaigns')
+        self.url = '{}/{}'.format(self.api_settings['url_api'], 'sms/send')
+        # self.url = '{}/{}'.format(self.api_settings['url_api'], 'sms/campaigns')
 
     def add_campaign(self, requests_info):
         self.headers.update({'Content-Type': 'application/json'})
